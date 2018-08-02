@@ -1,9 +1,13 @@
 pragma solidity ^0.4.21;
 
 contract Storage {
-    uint256 storedData;
+    uint256 state;
 
-    function checkAnswer(string hash) public view returns (uint256) {
-        return "hello";
+    function set(uint256 data) public {
+        state = data;
+    }
+
+    function get() public view returns (uint256) {
+        return state;
     }
 }
