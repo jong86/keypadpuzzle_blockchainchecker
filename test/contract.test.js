@@ -1,9 +1,9 @@
+require('dotenv').config();
+const { MY_ADDRESS, NETWORK_ID, RPC_SERVER } = process.env
 const Web3 = require('web3');
-const web3 = new Web3('http://127.0.0.1:7545');
+const web3 = new Web3(RPC_SERVER);
 const compiledContract = require('../build/contracts/SolutionChecker.json');
-const networkId = '5777';
-const myAddress = '0x45786D0379336984927b20ceB90C2F2628ea97E3';
-const contractAddress = compiledContract.networks[networkId].address;
+const contractAddress = compiledContract.networks[NETWORK_ID].address;
 const chai = require('chai');
 const expect = chai.expect;
 
@@ -13,7 +13,7 @@ const contract = new web3.eth.Contract(
   contractAddress,
   {
     gasPrice: '12345678',
-    from: myAddress,
+    from: MY_ADDRESS,
   }
 );
 
@@ -23,7 +23,7 @@ async function sendEthToContract(amount) {
   return await (async () => {
     const options = {
       to: contractAddress,
-      from: myAddress,
+      from: MY_ADDRESS,
       value: web3.utils.toWei(amount)
     }
 
@@ -39,11 +39,11 @@ async function submitAnswer(answer) {
   return await (async () => {
     const options = {
       to: contractAddress,
-      from: myAddress,
+      from: MY_ADDRESS,
     }
 
     try {
-      await contract.methods.submitAnswer(answer, myAddress).send(options)
+      await contract.methods.submitAnswer(answer, MY_ADDRESS).send(options)
     } catch (e) {
       console.trace(e);
     }
@@ -71,23 +71,23 @@ describe('contract', () => {
   })
 
   it('does not send ether to address for incorrect answer', async () => {
-    const balanceBefore = await getAccountBalance(myAddress);
+    const balanceBefore = await getAccountBalance(MY_ADDRESS);
     await submitAnswer('42');
-    const balanceAfter = await getAccountBalance(myAddress);
+    const balanceAfter = await getAccountBalance(MY_ADDRESS);
     expect(Number(balanceBefore).toFixed(3)).to.equal(Number(balanceAfter).toFixed(3));
   })
 
   it('sends 0.1 ether to address for correct answer', async () => {
-    const balanceBefore = await getAccountBalance(myAddress);
+    const balanceBefore = await getAccountBalance(MY_ADDRESS);
     await submitAnswer(correctAnswer);
-    const balanceAfter = await getAccountBalance(myAddress);
+    const balanceAfter = await getAccountBalance(MY_ADDRESS);
     expect(Number(balanceBefore).toFixed(3)).to.equal((Number(balanceAfter) - 0.1).toFixed(3));
   })
 
   it('does not send more ether after it has been solved', async () => {
-    const balanceBefore = await getAccountBalance(myAddress);
+    const balanceBefore = await getAccountBalance(MY_ADDRESS);
     await submitAnswer(correctAnswer);
-    const balanceAfter = await getAccountBalance(myAddress);
+    const balanceAfter = await getAccountBalance(MY_ADDRESS);
     expect(Number(balanceBefore).toFixed(3)).to.equal(Number(balanceAfter).toFixed(3));
   })
 })

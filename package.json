@@ -7,13 +7,14 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "npm run deploy && mocha",
     "deploy": "rm -r ./build/contracts; truffle compile && truffle migrate && echo '\nDeployed.'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^6.0.0",
     "truffle": "^4.1.13",
     "web3": "^1.0.0-beta.35"
   },

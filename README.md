@@ -1,9 +1,12 @@
 ## Usage
 
+### Keypad puzzle answer
+- `python keypadPuzzle.py`
+
+
+### 'Bounty-giving' smart contract
 - web3 installation requires Python 2.7: `pyenv global 2.7`
-- Download, install, and run Ganache
-- Copy first listed address in Ganache to the `.env` file under key `MY_ADDRESS=...`
-- Check if Ganache is running on `http://127.0.0.1:7545` with network ID `5777`, and if not update the env variables
+- Download, install, and run [Ganache](https://truffleframework.com/ganache)
+- Check that all variables in `.env` file match what's in Ganache (not sure if this is the same for everybody)
 - `npm i`
-- `npm run deploy`
-- `npm run test`
+- `npm test` to deploy and test the contract
