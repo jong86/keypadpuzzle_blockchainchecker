@@ -14,6 +14,7 @@ contract Storage {
 
         if (hashedAnswer == hashedSolution && !hasAddressAlreadyWon(addr)) {
             solvers.push(addr);
+            // addr.send(0.1 ether);
         }
     }
 
@@ -22,7 +23,7 @@ contract Storage {
     }
 
     function hasAddressAlreadyWon(address addr) private view returns (bool) {
-        // To prevent an address from being added twice to solvers
+        /* To prevent an address from being added twice to solvers */
 
         uint solversLength = solvers.length;
 
@@ -34,4 +35,6 @@ contract Storage {
 
         return false;
     }
+
+    function() external payable { }
 }
