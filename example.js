@@ -3,6 +3,7 @@ const web3 = new Web3('http://127.0.0.1:7545');
 const compiledContract = require('./build/contracts/Storage.json');
 const networkId = '5777';
 const myAddress = '0x45786D0379336984927b20ceB90C2F2628ea97E3';
+const convert = require('convert-hex');
 
 const contract = new web3.eth.Contract(
   compiledContract.abi,
@@ -32,7 +33,9 @@ async function doSomething() {
       from: myAddress,
     }
 
-    const response = await contract.methods.submitAnswer(42, myAddress).send(options)
+    const answer = "129972527136293531402532099719168"
+
+    const response = await contract.methods.submitAnswer(answer, myAddress).send(options)
     console.log('response1', response);
   } catch (e) {
     console.log(e)
