@@ -21,6 +21,7 @@ async function submitAnswerAndCheck() {
     }
 
     const answer = "129972527136293531402532099719168"
+    // const answer = "12997252713629353140253209971916"
 
     const response = await contract.methods.submitAnswer(answer, myAddress).send(options)
     console.log('response1', response);
@@ -34,10 +35,10 @@ async function submitAnswerAndCheck() {
       // gas: 100000,
     }
 
-    const response = await contract.methods.getWinners().call(options)
+    const response = await contract.methods.getSolvers().call(options)
     console.log('response2', response);
     if (response.includes(myAddress)) {
-      console.log("The contract says it was correct!")
+      console.log("The contract said the answer was correct!")
     }
   } catch (e) {
     console.log(e)
