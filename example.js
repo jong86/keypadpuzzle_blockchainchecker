@@ -14,13 +14,25 @@ const contract = new web3.eth.Contract(
 );
 
 async function doSomething() {
+  // try {
+  //   const options = {
+  //     to: compiledContract.networks[networkId].address,
+  //     from: myAddress,
+  //   }
+
+  //   const response = await contract.methods.checkAnswer().send(options)
+  //   console.log('response1', response);
+  // } catch (e) {
+  //   console.log(e)
+  // }
+
   try {
     const options = {
       to: compiledContract.networks[networkId].address,
       from: myAddress,
     }
 
-    const response = await contract.methods.set(12).send(options)
+    const response = await contract.methods.set(42).send(options)
     console.log('response1', response);
   } catch (e) {
     console.log(e)
