@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "rm -r ./build/contracts && truffle compile && truffle migrate && echo '\nDeployed.'"
+    "deploy": "rm -r ./build/contracts; truffle compile && truffle migrate && echo '\nDeployed.'"
   },
   "keywords": [],
   "author": "",

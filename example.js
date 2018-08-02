@@ -20,7 +20,7 @@ async function doSomething() {
   //     from: myAddress,
   //   }
 
-  //   const response = await contract.methods.checkAnswer().send(options)
+  //   const response = await contract.methods.checkAnswer(42).send(options)
   //   console.log('response1', response);
   // } catch (e) {
   //   console.log(e)
@@ -32,7 +32,7 @@ async function doSomething() {
       from: myAddress,
     }
 
-    const response = await contract.methods.set(42).send(options)
+    const response = await contract.methods.submitAnswer(42, myAddress).send(options)
     console.log('response1', response);
   } catch (e) {
     console.log(e)
@@ -44,7 +44,7 @@ async function doSomething() {
       gas: 100000,
     }
 
-    const response = await contract.methods.get().call(options)
+    const response = await contract.methods.getWinners().call(options)
     console.log('response2', response);
   } catch (e) {
     console.log(e)
