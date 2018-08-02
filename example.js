@@ -3,7 +3,6 @@ const web3 = new Web3('http://127.0.0.1:7545');
 const compiledContract = require('./build/contracts/Storage.json');
 const networkId = '5777';
 const myAddress = '0x45786D0379336984927b20ceB90C2F2628ea97E3';
-const convert = require('convert-hex');
 
 const contract = new web3.eth.Contract(
   compiledContract.abi,
@@ -14,19 +13,7 @@ const contract = new web3.eth.Contract(
   }
 );
 
-async function doSomething() {
-  // try {
-  //   const options = {
-  //     to: compiledContract.networks[networkId].address,
-  //     from: myAddress,
-  //   }
-
-  //   const response = await contract.methods.checkAnswer(42).send(options)
-  //   console.log('response1', response);
-  // } catch (e) {
-  //   console.log(e)
-  // }
-
+async function submitAnswerAndCheck() {
   try {
     const options = {
       to: compiledContract.networks[networkId].address,
@@ -44,14 +31,17 @@ async function doSomething() {
   try {
     const options = {
       from: myAddress,
-      gas: 100000,
+      // gas: 100000,
     }
 
     const response = await contract.methods.getWinners().call(options)
     console.log('response2', response);
+    if (response.includes(myAddress)) {
+      console.log("The contract says it was correct!")
+    }
   } catch (e) {
     console.log(e)
   }
 }
 
-doSomething();
+submitAnswerAndCheck();
