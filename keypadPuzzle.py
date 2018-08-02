@@ -48,7 +48,7 @@ def get_numbers(digits):
 
       for j in range (0, len(next_digits)):
         new_terminal_digits[next_digits[j]] += terminal_digits[i] * 1
-        
+
     terminal_digits = new_terminal_digits
     digit_place += 1
 

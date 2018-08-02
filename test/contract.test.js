@@ -64,15 +64,6 @@ async function getAccountBalance(address) {
   })()
 }
 
-async function main() {
-  await sendEthToContract('0.1');
-  await getAccountBalance(myAddress);
-  await submitAnswer(correctAnswer);
-  await getAccountBalance(myAddress);
-}
-
-// main();
-
 describe('contract', () => {
   before(async () => {
     // So the contract has ether to send to account for correct answer
@@ -81,7 +72,7 @@ describe('contract', () => {
 
   it('does not send ether to address for incorrect answer', async () => {
     const balanceBefore = await getAccountBalance(myAddress);
-    await submitAnswer("42");
+    await submitAnswer('42');
     const balanceAfter = await getAccountBalance(myAddress);
     expect(Number(balanceBefore).toFixed(3)).to.equal(Number(balanceAfter).toFixed(3));
   })
@@ -93,7 +84,7 @@ describe('contract', () => {
     expect(Number(balanceBefore).toFixed(3)).to.equal((Number(balanceAfter) - 0.1).toFixed(3));
   })
 
-  it('does not send ether to address after it has been solved', async () => {
+  it('does not send more ether after it has been solved', async () => {
     const balanceBefore = await getAccountBalance(myAddress);
     await submitAnswer(correctAnswer);
     const balanceAfter = await getAccountBalance(myAddress);

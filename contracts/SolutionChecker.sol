@@ -15,6 +15,7 @@ contract SolutionChecker {
 
         if (hashedAnswer == hashedSolution && !hasBeenSolved) {
             addr.transfer(0.1 ether);
+            hasBeenSolved = true;
         }
     }
 
