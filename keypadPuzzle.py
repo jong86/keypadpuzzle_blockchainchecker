@@ -2,9 +2,9 @@ import pprint
 
 """
 Write a program to calculate the number of n-digit numbers that simultaneously:
-• exclude * and #
-• start with 0
-• are formed by cycling through three moves: a "tall L" (two steps in one direction followed by one
+- exclude * and #
+- start with 0
+- are formed by cycling through three moves: a "tall L" (two steps in one direction followed by one
 step in the perpendicular direction) followed by two "short L"s (one step in one direction followed
 by one step in the perpendicular direction).
 """
@@ -54,5 +54,5 @@ def get_numbers(digits):
 
   return count_numbers(new_terminal_digits)
 
-print("7 digit combinations:", get_numbers(7))
-print("100 digit combinations:", get_numbers(100))
+print "7 digit combinations:", get_numbers(7)
+print "100 digit combinations:", get_numbers(100)
