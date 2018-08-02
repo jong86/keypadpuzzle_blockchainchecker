@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "deploy": "rm -r ./build/contracts; truffle compile && truffle migrate && echo '\nDeployed.'"
   },
   "keywords": [],
@@ -16,5 +16,9 @@
   "dependencies": {
     "truffle": "^4.1.13",
     "web3": "^1.0.0-beta.35"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
   }
 }
